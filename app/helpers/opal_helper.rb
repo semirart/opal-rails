@@ -9,7 +9,7 @@ module OpalHelper
 
   def javascript_include_tag(*sources)
     options = sources.extract_options!
-    sprockets = Rails.application.assets
+    sprockets = Rails.application.assets || ::Sprockets::Railtie.build_environment(Rails.application)
     skip_loader = options.delete(:skip_opal_loader)
     script_tags = super(*sources, options)
 
